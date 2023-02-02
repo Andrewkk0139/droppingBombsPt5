@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         if (!gameStarted)
         {
+
             if (Input.anyKeyDown && smokeCleared)
             {
                 smokeCleared = false;
@@ -77,6 +78,20 @@ public class GameManager : MonoBehaviour
                 scoreSystem.GetComponent<Score>().AddScore(pointsWorth);
                 Destroy(bombObject);
             }
+        }
+        if(!gameStarted)
+        {
+            var textColor = "#323232";
+
+            if(beatBestScore)
+            {
+                textColor = "#F00";
+            }
+
+            bestScoreText.text = "<color=" + textColor + ">Best Score: " + bestScore.ToString() + "</color>";
+        } else
+        {
+            bestScoreText.text = "";
         }
     }
     void OnPlayerKilled()
